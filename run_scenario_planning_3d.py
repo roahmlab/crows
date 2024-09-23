@@ -15,6 +15,7 @@ from planning.crows.crows_urdf import CROWS_3D_planner
 from planning.common.waypoints import GoalWaypointGenerator, CustomWaypointGenerator
 from visualizations.fo_viz import FOViz
 from visualizations.sphere_viz import SpherePlannerViz
+from visualizations.robot_step_viz import RobotStepViz
 import os
 T_PLAN, T_FULL = 0.5, 1.0
 
@@ -35,7 +36,9 @@ def evaluate_planner(planner,
                      time_limit=0.5, 
                      detail=True, 
                      t_final_thereshold=0.,
-                     check_self_collision=False,
+                     check_self_collision=True,
+                     blender=False,
+                     traj=False,
                      use_hlp=False,
                      tol = 1e-5,
                     ):
@@ -61,6 +64,10 @@ def evaluate_planner(planner,
             video_folder += '_reachset'
         if not os.path.exists(video_folder):
             os.makedirs(video_folder)
+    if blender:
+        blender_folder = f'scenario_planning_blender_files/{planner_name}'
+        if not os.path.exists(blender_folder):
+            os.makedirs(blender_folder)
     if detail:
         import pickle
         planning_details = {}
@@ -93,15 +100,22 @@ def evaluate_planner(planner,
             obs_size_min = [0.2,0.2,0.2],
             obs_size_max = [0.2,0.2,0.2],
             n_obs=n_obs,
-            renderer = 'pyrender-offscreen',
+            renderer = 'blender' if blender else 'pyrender-offscreen',
             info_nearest_obstacle_dist = False,
-            obs_gen_buffer = 0.01
+            obs_gen_buffer = 0.01,
+            goal_use_mesh = True,
         )
+        
+        if blender:
+            renderer_args = {'filename': os.path.join(blender_folder, f"{planner_name}_hard_scene{i_env}.blend")}
+            if traj:
+                renderer_args.update({'render_frames': 1})
+            env_args['renderer_kwargs'] = renderer_args
         env = KinematicUrdfWithObstacles(
                 robot=rob.urdf,
                 **env_args
             )
-        if video and reachset_viz:
+        if reachset_viz:
             if 'sphere' in planner_name or 'crows' in planner_name:
                 viz = SpherePlannerViz(planner, plot_full_set=True, t_full=T_FULL)
             elif 'armtd' in planner_name:
@@ -109,6 +123,10 @@ def evaluate_planner(planner,
             else:
                 raise NotImplementedError(f"Visualizer for {planner_name} type has not been implemented yet.")
             env.add_render_callback('spheres', viz.render_callback, needs_time=False)
+        
+        if traj:
+            traj_viz = RobotStepViz()
+            env.add_render_callback('trajectory', traj_viz.render_callback, needs_time=False)
         
         obs = env.reset(
                 qpos = qstart, 
@@ -168,14 +186,13 @@ def evaluate_planner(planner,
 
             if flag != 0:
                 ka = (0 - qvel)/(T_FULL - T_PLAN)
-
             if force_fail_safe:
                 ka = (0 - qvel)/(T_FULL - T_PLAN)
-                force_fail_safe = False   
+                force_fail_safe = False
             else:
                 force_fail_safe = (flag == 0) and planner.nlp_problem_obj.use_t_final and (np.sqrt(planner.final_cost) < env.goal_threshold)
                 
-            if video and reachset_viz:
+            if reachset_viz:
                 if flag == 0:
                     viz.set_ka(ka)
                 else:
@@ -183,6 +200,8 @@ def evaluate_planner(planner,
             obs, reward, done, info = env.step(ka)
             if video:
                 video_recorder.capture_frame()
+            if blender:
+                env.render()
             if detail:
                 planning_details[i_env]['trajectory']['k'].append(ka)
                 planning_details[i_env]['trajectory']['flag'].append(flag)
@@ -218,7 +237,8 @@ def evaluate_planner(planner,
             )
         if video:
             video_recorder.close()
-        
+        if blender:
+            env.close()
 
     planner_stats_summary = {}
     for key in planner_stats:
@@ -275,7 +295,9 @@ def read_params():
 
     # visualization settings
     parser.add_argument('--video',  action='store_true')
+    parser.add_argument('--blender',  action='store_true')
     parser.add_argument('--reachset',  action='store_true')
+    parser.add_argument('--traj',  action='store_true')
     
     # optimization info
     parser.add_argument('--num_spheres', type=int, default=5)
@@ -342,6 +364,8 @@ if __name__ == '__main__':
             detail=params.detail,
             t_final_thereshold=params.t_final_thereshold,
             use_hlp=params.hlp,
+            blender=params.blender,
+            traj=params.traj,
             tol=params.tol,
         )
     if planner_name == 'sphere' or planner_name == 'crows':
@@ -381,6 +405,8 @@ if __name__ == '__main__':
                 detail=params.detail,
                 t_final_thereshold=params.t_final_thereshold,
                 use_hlp=params.hlp,
+                blender=params.blender,
+                traj=params.traj,
                 tol=params.tol,
             )
         else:
@@ -414,5 +440,7 @@ if __name__ == '__main__':
                 detail=params.detail,
                 t_final_thereshold=params.t_final_thereshold,
                 use_hlp=params.hlp,
+                blender=params.blender,
+                traj=params.traj,
                 tol=params.tol,
             )
