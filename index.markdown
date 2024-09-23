@@ -40,12 +40,12 @@ links:
 #    url: https://arxiv.org/
   - icon: github
     icon-library: simpleicons
-    text: Code (Coming Soon!)
-    # url: https://github.com/roahmlab/crows
+    text: Code
+    url: https://github.com/roahmlab/crows
   - icon: bi-file-earmark-text
     icon-library: bootstrap-icons
-    text: Appendix (Coming Soon!)
-    # url: documents/crows_appendix.pdf
+    text: Appendix
+    url: assets/documents/CROWS_Appendix.pdf
 
 # End Front Matter
 ---

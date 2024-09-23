@@ -35,8 +35,8 @@ footer:
   # connections-pre: # This prefixes the connections section at the botom.
   # connections-post: Socials
   connections:
-    github: https://github.com/roahmlab/crows
     arxiv: https://arxiv.org/abs/
+    github: https://github.com/roahmlab/crows
   # related-sites:
   #   sites:
   #     - text: Base Example
