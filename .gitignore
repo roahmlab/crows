@@ -2,5 +2,5 @@ __pycache__/
 
 scenario_planning_*/
 planning_*/
-so_dataset/
+*.hdf5
 wandb/
