@@ -89,11 +89,12 @@ Safe motion planning algorithms are necessary for deploying autonomous robots in
 
 # [Method](#method)
 
-<!-- ![link_construction](./assets/method_overview.png)
-{: class="fullwidth"} -->
+![link_construction](./assets/method_overview.png)
+{: style="width: 90%; display: block; margin: 0 auto;" }
+
 
 <!-- # Contributions -->
-To address this challenge, this paper proposes Conformalized Reachable Sets for Obstacle Avoidance With Spheres (CROWS), a neural network-based safety representation that can be efficiently integrated into a trajectory optimization algorithm. CROWS extends SPARROWS<sup>[1](https://roahmlab.github.io/sparrows/)</sup>  by learning an overapproximation of the swept volume (i.e. reachable set) of a serial robot manipulator that is composed entirely of spheres. Prior to planning, a neural network is trained to approximate the sphere-based reachable set. Then, CROWS applies conformal prediction to compute a confidence bound that provides a probabilistic safety guarantee. Finally, CROWS uses the conformalized reachable set and its learned gradient to solve an optimization problem to generate probabilistically-safe trajectories online.
+This paper proposes Conformalized Reachable Sets for Obstacle Avoidance With Spheres (CROWS), a neural network-based safety representation that can be efficiently integrated into a trajectory optimization algorithm. CROWS extends SPARROWS<sup>[1](https://roahmlab.github.io/sparrows/)</sup>  by learning an overapproximation of the swept volume (i.e. reachable set) of a serial robot manipulator that is composed entirely of spheres. Prior to planning, a neural network is trained to approximate the sphere-based reachable set. Then, CROWS applies conformal prediction to compute a confidence bound that provides a probabilistic safety guarantee. Finally, CROWS uses the conformalized reachable set and its learned gradient to solve an optimization problem to generate probabilistically-safe trajectories online.
 
 </div><!-- END METHOD -->
 
