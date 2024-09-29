@@ -71,6 +71,7 @@ class KinematicUrdfWithObstacles(KinematicUrdfBase):
 
         self.obstacle_collision_manager = None
         self.obs_list = []
+        self.obs_rot = None
         self.obs_size = None
         self.obs_pos = None
 
@@ -80,6 +81,7 @@ class KinematicUrdfWithObstacles(KinematicUrdfBase):
               qgoal: np.ndarray = None,
               obs_pos: np.ndarray = None,
               obs_size: np.ndarray = None,
+              obs_rot: np.ndarray = None,
               **kwargs):
         '''Reset the environment with obstacles
 
@@ -93,6 +95,9 @@ class KinematicUrdfWithObstacles(KinematicUrdfBase):
             obs_size: np.ndarray, Optional
                 Size of the obstacles.
                 If not provided, then random sizes will be generated.
+            obs_rot: np.ndarray, Optional
+                Rotation matrix of the obstacles.
+                If not provided, the identity rotation matrix will be used.
             **kwargs: dict
                 Additional keyword arguments to pass to the reset function and the super class reset function.
         '''
@@ -111,6 +116,10 @@ class KinematicUrdfWithObstacles(KinematicUrdfBase):
         if obs_size is None:
             obs_size = self.np_random.uniform(low=self.obs_size_range[0], high=self.obs_size_range[1])
         obs_size = np.asarray(obs_size)
+
+        if obs_rot is None:
+            obs_rot = np.eye(3)[None].repeat(self.n_obs,axis=0)
+        obs_rot = np.asarray(obs_rot)
 
         # if no position is provided, generate
         if obs_pos is None:
@@ -165,11 +174,13 @@ class KinematicUrdfWithObstacles(KinematicUrdfBase):
         # add the obstacles to the obstacle collision manager
         self.obs_pos = obs_pos
         self.obs_size = obs_size
+        self.obs_rot = obs_rot
         self.obstacle_collision_manager = trimesh.collision.CollisionManager()
         self.obs_meshes = {}
-        for i, (pos, size) in enumerate(zip(obs_pos, obs_size)):
+        for i, (pos, size, rot) in enumerate(zip(obs_pos, obs_size, obs_rot)):
             obs = trimesh.primitives.Box(extents=size)
             pose = np.eye(4)
+            pose[:3,:3] = rot
             pose[0:3,3] = pos
             obs_name = f'obs{i}'
             self.obstacle_collision_manager.add_object(obs_name, obs, transform=pose)
