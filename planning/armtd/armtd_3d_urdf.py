@@ -1,4 +1,3 @@
-# TODO VALIDATE
 import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
@@ -222,6 +221,7 @@ class ARMTD_3D_planner():
                 The obstacles in the environment
                 The first element is the positions of the obstacles in rows of xyz
                 The second element is the sizes of the obstacles in rows of xyz
+                The third element (optional) is the 3x3 rotation matrices representing the orientation of each obstacle
             ka_0: np.ndarray, Optional
                 The initial guess for the joint accelerations. Default is None.
             time_limit: float, Optional
@@ -242,10 +242,18 @@ class ARMTD_3D_planner():
         JRS_process_time = time.perf_counter() - JRS_process_time_start
 
         # Create obs zonotopes
-        obs_Z = torch.cat((
-            torch.as_tensor(obs[0], dtype=self.dtype, device=self.device).unsqueeze(-2),
-            torch.diag_embed(torch.as_tensor(obs[1], dtype=self.dtype, device=self.device))/2.
-            ), dim=-2)
+        if len(obs) == 2:
+            obs_Z = torch.cat((
+                torch.as_tensor(obs[0], dtype=self.dtype, device=self.device).unsqueeze(-2),
+                torch.diag_embed(torch.as_tensor(obs[1], dtype=self.dtype, device=self.device))/2.
+                ), dim=-2)
+        elif len(obs) > 2:
+            Gen =  torch.diag_embed(torch.as_tensor(obs[1], dtype=self.dtype, device=self.device))/2. @ torch.as_tensor(obs[2], dtype=self.dtype, device=self.device).transpose(-1,-2)
+            obs_Z = torch.cat((
+                torch.as_tensor(obs[0], dtype=self.dtype, device=self.device).unsqueeze(-2),
+                Gen
+                ), dim=-2)
+                
         obs_zono = batchZonotope(obs_Z)
 
         # Compute FO

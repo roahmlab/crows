@@ -1,5 +1,3 @@
-# TODO VALIDATE
-
 import torch
 import numpy as np
 import zonopy as zp
@@ -194,6 +192,7 @@ class CROWS_3D_planner():
                 The obstacles in the environment
                 The first element is the positions of the obstacles in rows of xyz
                 The second element is the sizes of the obstacles in rows of xyz
+                The third element (optional) is the 3x3 rotation matrices representing the orientation of each obstacle
             ka_0: np.ndarray, Optional
                 The initial guess for the joint accelerations. Default is None.
             time_limit: float, Optional
@@ -209,10 +208,18 @@ class CROWS_3D_planner():
         '''
         # Create obs zonotopes
         preparation_time_start = time.perf_counter()
-        obs_Z = torch.cat((
-            torch.as_tensor(obs[0], dtype=self.dtype, device=self.device).unsqueeze(-2),
-            torch.diag_embed(torch.as_tensor(obs[1], dtype=self.dtype, device=self.device))/2.
-            ), dim=-2)
+        if len(obs) == 2:
+            obs_Z = torch.cat((
+                torch.as_tensor(obs[0], dtype=self.dtype, device=self.device).unsqueeze(-2),
+                torch.diag_embed(torch.as_tensor(obs[1], dtype=self.dtype, device=self.device))/2.
+                ), dim=-2)
+        elif len(obs) > 2:
+            Gen =  torch.diag_embed(torch.as_tensor(obs[1], dtype=self.dtype, device=self.device))/2. @ torch.as_tensor(obs[2], dtype=self.dtype, device=self.device).transpose(-1,-2)
+            obs_Z = torch.cat((
+                torch.as_tensor(obs[0], dtype=self.dtype, device=self.device).unsqueeze(-2),
+                Gen
+                ), dim=-2)
+                
         obs_zono = zp.batchZonotope(obs_Z)
 
         # Compute FO
