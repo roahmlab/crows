@@ -136,6 +136,7 @@ Panel (A) compares the ground truth (left, purple), predicted (middle, orange), 
       playsinline
       muted
       loop
+      onclick="this.paused ? this.play() : this.pause();"
       poster="assets/images/realistic_1_thumb.jpg">
       <source src="assets/videos/realistic_1.mp4" type="video/mp4">
       Your browser does not support this video.
@@ -150,6 +151,7 @@ Panel (A) compares the ground truth (left, purple), predicted (middle, orange), 
       playsinline
       muted
       loop
+      onclick="this.paused ? this.play() : this.pause();"
       poster="assets/images/realistic_2_thumb.jpg">
       <source src="assets/videos/realistic_2.mp4" type="video/mp4">
       Your browser does not support this video.
@@ -164,6 +166,7 @@ Panel (A) compares the ground truth (left, purple), predicted (middle, orange), 
       playsinline
       muted
       loop
+      onclick="this.paused ? this.play() : this.pause();"
       poster="assets/images/realistic_3_thumb.jpg">
       <source src="assets/videos/realistic_3.mp4" type="video/mp4">
       Your browser does not support this video.
@@ -178,6 +181,7 @@ Panel (A) compares the ground truth (left, purple), predicted (middle, orange), 
       playsinline
       muted
       loop
+      onclick="this.paused ? this.play() : this.pause();"
       poster="assets/images/realistic_4_thumb.jpg">
       <source src="assets/videos/realistic_4.mp4" type="video/mp4">
       Your browser does not support this video.
@@ -192,6 +196,7 @@ Panel (A) compares the ground truth (left, purple), predicted (middle, orange), 
       playsinline
       muted
       loop
+      onclick="this.paused ? this.play() : this.pause();"
       poster="assets/images/realistic_5_thumb.jpg">
       <source src="assets/videos/realistic_5.mp4" type="video/mp4">
       Your browser does not support this video.
@@ -211,6 +216,7 @@ Panel (A) compares the ground truth (left, purple), predicted (middle, orange), 
       playsinline
       muted
       loop
+      onclick="this.paused ? this.play() : this.pause();"
       poster="assets/images/hardware_demo_1_thumb.jpg">
       <source src="assets/videos/hardware_demo_1.mp4" type="video/mp4">
       Your browser does not support this video.
@@ -225,6 +231,7 @@ Panel (A) compares the ground truth (left, purple), predicted (middle, orange), 
       playsinline
       muted
       loop
+      onclick="this.paused ? this.play() : this.pause();"
       poster="assets/images/hardware_demo_2_thumb.jpg">
       <source src="assets/videos/hardware_demo_2.mp4" type="video/mp4">
       Your browser does not support this video.
@@ -239,6 +246,7 @@ Panel (A) compares the ground truth (left, purple), predicted (middle, orange), 
       playsinline
       muted
       loop
+      onclick="this.paused ? this.play() : this.pause();"
       poster="assets/images/hardware_demo_3_thumb.jpg">
       <source src="assets/videos/hardware_demo_3.mp4" type="video/mp4">
       Your browser does not support this video.
