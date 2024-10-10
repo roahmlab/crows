@@ -37,11 +37,12 @@ footer:
   connections:
     arxiv: https://arxiv.org/abs/
     github: https://github.com/roahmlab/crows
+    googledrive: https://drive.google.com/drive/folders/1y82zpWuKaZmejr7AXxctpPKblB2tOSW9?usp=sharing
   # related-sites:
   #   sites:
   #     - text: Base Example
   #       href: /project-pages/
-  #       icon: bi-box-arrow-left
+  #       icon: bi-file-earmark-text-fill
   #       icon-library: bootstrap-icons
 
 
