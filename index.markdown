@@ -80,7 +80,7 @@ links:
       loop
       style="display:block; width:100%; height:auto;"
       poster="assets/images/bookshelf_thumb.jpg">
-      <source src="assets/videos/bookshelf.mp4" type="video/mp4">
+      <source src="assets/videos/bookshelf_single_take.mp4" type="video/mp4">
       Your browser does not support this video.
     </video>
     <p>CROWS performing trajectory planning between two bookshelfs</p>
