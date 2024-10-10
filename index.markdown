@@ -32,6 +32,8 @@ authors:
     email: jimzhang [at] umich.edu
   - name: Matthew Ejakov
     email: ejakovm [at] umich.edu
+  - name: Katherine A. Skinner
+    email: kskin [at] umich.edu
   - name: Ram Vasudevan
     email: ramv [at] umich.edu
 
@@ -276,7 +278,7 @@ This project was developed in [Robotics and Optimization for Analysis of Human M
 ```bibtex
 @article{kwon2024crows,
   title={Conformalized Reachable Sets for Obstacle Avoidance With Spheres},
-  author={Yongseok Kwon and Jonathan Michaux and and Seth Isaacson and Bohao Zhang and Matthew Ejakov and Ram Vasudevan},
+  author={Yongseok Kwon and Jonathan Michaux and and Seth Isaacson and Bohao Zhang and Matthew Ejakov and Katherine A. Skinner and Ram Vasudevan},
   journal={},
   year={2024},
   volume={},
