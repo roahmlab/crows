@@ -4,3 +4,5 @@ scenario_planning_*/
 planning_*/
 *.hdf5
 wandb/
+Gemfile.lock
+_site/
