@@ -12,7 +12,7 @@ We demonstrate that CROWS outperforms a variety of state-of-the-art methods in s
 To set up the Python environment, you can install the required dependencies using [conda](https://www.anaconda.com) by following these steps:
 ```bash
 conda env create --file environment.yaml
-conda activate sparrows
+conda activate crows
 ```
 Note: Solving the conda environment can take up to 15 minutes. If you don't have access to a CUDA-capable device, use the environment-cpu.yaml file to install the CPU-only version of PyTorch.
 
