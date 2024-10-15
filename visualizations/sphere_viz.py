@@ -10,13 +10,14 @@ from forward_occupancy.SO import make_spheres
 from zonopyrobots.robots.utils import normal_vec_to_basis
 from typing import TYPE_CHECKING
 
+from planning.sparrows.sparrows_urdf import SPARROWS_3D_planner
+from planning.crows.crows_urdf import CROWS_3D_planner
+
 if TYPE_CHECKING:
     from typing import List, Union
     from numpy import ndarray as NDArray
     from torch import Tensor
     from trimesh import Trimesh
-    from planning.sparrows.sparrows_urdf import SPARROWS_3D_planner
-    from planning.crows.crows_urdf import CROWS_3D_planner
     from environments.urdf_base import KinematicUrdfBase
 
 
