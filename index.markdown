@@ -45,8 +45,8 @@ author-footnotes:
 links:
   - icon: arxiv
     icon-library: simpleicons
-    text: Arxiv (Coming Soon!)
-#    url: https://arxiv.org/
+    text: ArXiv
+    url: https://arxiv.org/abs/2410.09924
   - icon: github
     icon-library: simpleicons
     text: Code
@@ -278,11 +278,10 @@ This project was developed in [Robotics and Optimization for Analysis of Human M
 ```bibtex
 @article{kwon2024crows,
   title={Conformalized Reachable Sets for Obstacle Avoidance With Spheres},
-  author={Yongseok Kwon and Jonathan Michaux and and Seth Isaacson and Bohao Zhang and Matthew Ejakov and Katherine A. Skinner and Ram Vasudevan},
-  journal={},
-  year={2024},
-  volume={},
-  url={}}
+  author={Kwon, Yongseok and Michaux, Jonathan and Isaacson, Seth and Zhang, Bohao and Ejakov, Matthew and Skinner, Katherine A and Vasudevan, Ram},
+  journal={arXiv preprint arXiv:2410.09924},
+  year={2024}
+}
 ```
 </div>
 
