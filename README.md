@@ -1,6 +1,6 @@
 # CROWS: Conformalized Reachable Sets for Obstacle Avoidance With Spheres
 
-[Project Page](https://roahmlab.github.io/crows/) | [Paper](https://arxiv.org/abs/2410.09924) | [Appendix](https://roahmlab.github.io/crows/assets/documents/CROWS_Appendix.pdf) | [Dataset](https://drive.google.com/drive/folders/1y82zpWuKaZmejr7AXxctpPKblB2tOSW9?usp=sharing)
+[Project Page](https://roahmlab.github.io/crows/) | [Paper](https://arxiv.org/abs/2410.09924) | [Appendix](https://roahmlab.github.io/crows/assets/documents/CROWS_Appendix.pdf)
 ## Introduction
 This is the code for CROWS: Conformalized Reachable Sets for Obstacle Avoidance With Spheres
 
@@ -29,10 +29,8 @@ Note that the environment includes:
 ### Device Allocation
 The `--device` argument specifies the device used for [PyTorch](https://pytorch.org/) computations. If a GPU is available, the default setting is `--device 0`, which uses `cuda:0`. If only a CPU is available, the default is `--device -1`, which sets the computation to `cpu`. For systems with multiple GPUs, you can manually select the device, e.g., `--device 2` to use `cuda:2`.
 
-### Downloading/Generating Dataset
-You can download the pre-generated dataset from [Google Drive](https://drive.google.com/drive/folders/1y82zpWuKaZmejr7AXxctpPKblB2tOSW9?usp=sharing) and place the files in the `data_processing/so_dataset` directory.
-
-Alternatively, you can generate the dataset yourself with the following commands:
+### Generating Dataset
+You can generate the dataset yourself with the following commands:
 ```python
 # Generate dataset for spherical occupancy
 python data_processing/generate_dataset.py --batch_size 500  
@@ -84,10 +82,11 @@ Please clone the `blender-color` branch to use those visualization environments.
 
 ## Citation
 ```bibtex
-@article{kwon2024crows,
+@inproceedings{kwon2024crows,
   title={Conformalized Reachable Sets for Obstacle Avoidance With Spheres},
   author={Kwon, Yongseok and Michaux, Jonathan and Isaacson, Seth and Zhang, Bohao and Ejakov, Matthew and Skinner, Katherine A and Vasudevan, Ram},
-  journal={arXiv preprint arXiv:2410.09924},
-  year={2024}
+  booktitle={2025 IEEE International Conference on Robotics and Automation (ICRA)},
+  year={2025},
+  organization={IEEE}
 }
 ```
