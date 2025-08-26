@@ -82,10 +82,11 @@ Please clone the `blender-color` branch to use those visualization environments.
 
 ## Citation
 ```bibtex
-@article{kwon2024crows,
+@inproceedings{kwon2024crows,
   title={Conformalized Reachable Sets for Obstacle Avoidance With Spheres},
   author={Kwon, Yongseok and Michaux, Jonathan and Isaacson, Seth and Zhang, Bohao and Ejakov, Matthew and Skinner, Katherine A and Vasudevan, Ram},
-  journal={arXiv preprint arXiv:2410.09924},
-  year={2024}
+  booktitle={2025 IEEE International Conference on Robotics and Automation (ICRA)},
+  year={2025},
+  organization={IEEE}
 }
 ```
