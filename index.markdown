@@ -55,10 +55,6 @@ links:
     icon-library: bootstrap-icons
     text: Appendix
     url: assets/documents/CROWS_Appendix.pdf
-  - icon: googledrive
-    icon-library: simpleicons
-    text: Dataset
-    url: https://drive.google.com/drive/folders/1y82zpWuKaZmejr7AXxctpPKblB2tOSW9?usp=sharing
 
 # End Front Matter
 ---
