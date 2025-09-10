@@ -2,7 +2,7 @@
 
 [Project Page](https://roahmlab.github.io/crows/) | [Paper](https://arxiv.org/abs/2410.09924) | [Appendix](https://roahmlab.github.io/crows/assets/documents/CROWS_Appendix.pdf)
 ## Introduction
-This is the code for CROWS: Conformalized Reachable Sets for Obstacle Avoidance With Spheres
+This is the code for CROWS: Conformalized Reachable Sets for Obstacle Avoidance With Spheres.
 
 CROWS is a real-time, receding horizon trajectory planner that generates *probabilitically-safe* motion plans based on a neural network-based representation of a spherebased reachable set. 
 
